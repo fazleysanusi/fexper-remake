@@ -21,6 +21,10 @@ def decisiontree(sent, tech):
         decision = 'buy'
     if sent == [('buy',)] and tech == [('volatile',)]:
         decision = 'buy'
+    if sent == [('sell',)] and tech == [('sell',)]:
+        decision = 'sell'
+    if sent == [('sell',)] and tech == [('volatile',)]:
+        decision = 'sell'
     else:
         decision = 'Nothing to do'
     return decision

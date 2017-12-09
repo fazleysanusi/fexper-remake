@@ -39,7 +39,6 @@ c = CurrencyRates()
 d = CurrencyCodes()
 # USD rate
 rate = c.get_rates('USD')
-# print(rate)
 
 # get EUR price
 EUR_rate = float(c.get_rate('EUR', 'USD'))
@@ -49,8 +48,7 @@ print('EUR Rate: ', d.get_symbol('USD'), EUR_rate)
 
 price_id = insertprice(EUR_rate)
 
-# display old price
-# oldprice = oldprice(insertprice(EUR_rate, now))
+
 oldprice = oldprice(price_id)
 print('Previous EUR Rate: ', d.get_symbol('USD'), oldprice)
 

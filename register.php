@@ -1,3 +1,21 @@
+<?php
+require('db.php');
+    // If the values are posted, insert them into the database.
+    if (isset($_POST['username']) && isset($_POST['password'])){
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $query = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
+        $result = pg_query($con, $query);
+        if($result){
+            $smsg = "User Created Successfully.";
+        }else{
+            $fmsg ="User Registration Failed";
+        }
+    }
+    ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,109 +42,45 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+
+    <link rel="stylesheet" href="styles.css" >
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+              
+  </head>
+            
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.php">Fexper</a>
+  <div class="container">
+    <form class="form-signin" method="POST">
+      
+      <?php if(isset($smsg)){ ?><div class="alert alert-success" role="alert"> <?php echo $smsg; ?> </div><?php } ?>
+      <?php if(isset($fmsg)){ ?><div class="alert alert-danger" role="alert"> <?php echo $fmsg; ?> </div><?php } ?>
+        <h2 class="form-signin-heading">Please Register</h2>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">@</span>
+          <input type="text" name="username" class="form-control" placeholder="Username" required>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li ><a href="login.php">Login</a></li>
-        </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-    <div class="container">
-
-        <div>
-            <form class="form-horizontal" role="form" action="" method="post">
-              
-                <fieldset>
-            
-                    <!-- Form Name -->
-                    <legend>Register</legend>
-
-                    <h3>Create new account</h3>
-            
-                    <!-- Text input-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="username">Username</label>  
-                      <div class="col-md-4">
-                      <input id="username" name="username" type="text" placeholder="username Number" class="form-control input-md" required="">
-                      <span class="help-block">Business username</span>  
-                      </div>
-                    </div>
-            
-                    <!-- Text input-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="email">Email</label>  
-                      <div class="col-md-4">
-                      <input id="email" name="email" type="text" placeholder="Email address" class="form-control input-md" required="">
-                      <span class="help-block">Email will be used for notication messages</span>  
-                      </div>
-                    </div>
-            
-                    <!-- Password input-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="password">Password </label>
-                      <div class="col-md-4">
-                        <input id="password" name="password" type="password" placeholder="Password " class="form-control input-md" required="">
-                        <span class="help-block">Admin Password </span>
-                      </div>
-                    </div>
-            
-                    <!-- Password input-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="rpassword">confirm</label>
-                      <div class="col-md-4">
-                        <input id="rpassword" name="rpassword" type="password" placeholder="Password" class="form-control input-md" required="">
-                        <span class="help-block">Retype pass word</span>
-                      </div>
-                    </div>
-            
-                    <!-- Text input-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="address1">Address</label>  
-                      <div class="col-md-4">
-                      <input id="address1" name="address1" type="text" placeholder="Address " class="form-control input-md" required="">
-                
-                      </div>
-                    </div>
-
-            
-                    <!-- Button (Double) -->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="save"></label>
-                      <div class="col-md-8">
-                        <button id="save" name="save" class="btn btn-success">Save</button>
-                        <button id="cancel" name="cancel" class="btn btn-danger">Cancel</button>
-                      </div>
-                    </div>
-            
-                    </fieldset>
-                    </form>
-            </div>
-            
-
-    </div><!-- /.container -->
-
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+          </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <a class="btn btn-lg btn-primary btn-block" href="login.php">Login</a>
+    </form>
+  </div>
+  </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -1,3 +1,38 @@
+<?php
+    session_start();
+
+    if(isset($_POST['login'])){
+        include_once("db.php");
+        $username = strip_tags($_POST['username']);
+        $password = strip_tags($_POST['password']);
+
+        $username = stripslashes($username);
+        $password = stripslashes($password);
+
+        $username = pg_prepare($db, $username);
+        $password = pg_prepare($db, $password);
+
+        $sql = "SELECT * FROM users WHERE username=$username";
+        $query = pg_query($db, $sql);
+        $row = pg_fetch_array($query);
+
+        $id = $row['user_id'];
+        $db_password = $row['password'];
+
+        if($password == $db_password){
+            $_SESSION['username'] = $username;
+            $_SESSION['user_id'] = $id;
+            header("Location: apps_real.php");
+        } 
+        else{
+            echo "You didn't enter the correct details!";
+        }
+
+
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,15 +59,11 @@
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <style>
+    input {font:small-caption;font-size:16px;}
+    </style>
   </head>
 
   <body>
@@ -58,28 +89,15 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-  <link href="maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-      <div class="row">
-        <div class="col-md-offset-5 col-md-3">
-            <div class="form-login">
-            <h4>Welcome back.</h4>
-            <form  method="post">
-            <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
-            </br>
-            <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
-            </br>
-            
-            <div class="wrapper">
-            <span class="group-btn">     
-                <a href="apps_real.php" type="submit" class="btn btn-primary btn-md">login<i class="fa fa-sign-in"></i></a>
-            </span>
-            </form>
-            </div>
-            <a href="register.php">subscribe here</a>
-            </div>
-        
-        </div>
-    </div>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    
+  <h1 style="font-family: Tahoma;">Login</h1>
+    <form action="login.php" method="post" enctype="multipart/form-data">
+    <input placeholder="Username" name="username" type="text" autofocus>
+    <input placeholder="Password" name="password" type="password">
+    <input name="login" type="submit" value="login">
+    </form>
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

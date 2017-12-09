@@ -6,7 +6,10 @@ from nltk.classify import NaiveBayesClassifier
 from nltk.corpus import names
 
 # url = 'http://fox13now.com/2013/12/30/new-year-new-laws-obamacare-pot-guns-and-drones/'
-url = 'https://www.dailyfx.com/forex/fundamental/forecast/weekly/eur/2017/10/29/After-ECB-Policy-Meeting-Euro-Adrift-Looking-for-a-Life-Boat.html'
+# url = 'https://www.dailyfx.com/forex/fundamental/forecast/weekly/eur/2017/10/29/After-ECB-Policy-Meeting-Euro-Adrift-Looking-for-a-Life-Boat.html'
+# url = 'https://www.dailyfx.com/forex/market_alert/2017/11/23/EURUSD-Jumps-as-Euro-Zone-Economic-Activity-Booms.html'
+url = 'https://www.dailyfx.com/forex/fundamental/daily_briefing/session_briefing/euro_open/2017/11/23/Euro-May-Shrug-Off-PMI-Survey-Roundup-German-GDP-Revision.html'
+
 article = Article(url)
 article.download()
 article.html
@@ -63,9 +66,7 @@ corpus = callnews(news_no)
 
 
  
-# positive_vocab = [ 'awesome', 'outstanding', 'fantastic', 'terrific', 'good', 'nice', 'great', ':)' ]
-positive_vocab = [ 'hau', 'sdasd', 'sdad', 'sdad', 'asd', 'asd', 'asda', ':)' ]
-
+positive_vocab = [ 'awesome', 'outstanding', 'fantastic', 'terrific', 'good', 'nice', 'great', ':)' ]
 negative_vocab = [ 'bad', 'terrible','useless', 'hate', ':(' ]
 neutral_vocab = [ 'movie','the','sound','was','is','actors','did','know','words','not' ]
  
