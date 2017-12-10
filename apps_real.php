@@ -1,8 +1,20 @@
 <?php 
-  $conn_string = "host=127.0.0.1 port=5432 dbname=postgres user=postgres password=fexper";
-  $dbconn = pg_connect($conn_string);
-  //connect to a database named "postgres" on the host "postgres" with a username and password
-  $conn = $dbconn;
+  session_start();
+  
+  include_once("db.php");
+
+  $user_check = $_SESSION['id'];
+  
+  $ses_sql = pg_query($db,"select username from users where username = '$user_check' ");
+  
+  $row = pg_fetch_array($ses_sql,pg_fetch_assoc);
+  
+  $login_session = $row['username'];
+  echo $row['username'];
+
+  if(!isset($_SESSION['id'])){
+     header("location:login.php");
+  }
   
 ?>
 <html lang="en">
@@ -116,7 +128,7 @@
               
               <?php 
               $query = "SELECT * FROM decision order by recomend_id desc limit 1"; 
-              $rs = pg_query($conn, $query) or die("Cannot execute query: $query\n");
+              $rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
               while ($row = pg_fetch_row($rs)) { 
                 echo "$row[0] \n"; 
               }
