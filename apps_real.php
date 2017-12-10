@@ -1,6 +1,5 @@
 <?php 
   include("db.php");
-
   session_start();
 
   $user_check = $_SESSION['user_id'];
@@ -14,9 +13,9 @@
   $login_session = $row['username'];
   
 
-  if(!isset($_SESSION['user_id'])){
-     header("location:login.php");
-  }
+  // if(!isset($_SESSION['user_id'])){
+  //    header("location:login.php");
+  // }
   
 ?>
 <html lang="en">
@@ -80,7 +79,7 @@
  
 
   <body>
-
+  <p>Welcome <?php echo $_SESSION['user_id']; ?>!</p>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
