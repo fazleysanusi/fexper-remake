@@ -12,7 +12,7 @@
   
   $login_session = $row['username'];
   
-
+//yg ni jadi x?
   // if(!isset($_SESSION['user_id'])){
   //    header("location:login.php");
   // }
