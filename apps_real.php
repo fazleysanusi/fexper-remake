@@ -49,8 +49,8 @@
     <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script> -->
     <script src="js/dashboard.js"></script>
-    <script src="raphael.2.1.0.min.js"></script>
-    <script src="justgage.1.0.1.min.js"></script>
+    <script src="js/raphael.2.1.0.min.js"></script>
+    <script src="js/justgage.1.0.1.min.js"></script>
   </head>
 
   <style>
@@ -186,7 +186,7 @@ new TradingView.widget({
 <!-- TradingView Widget END --> </div>
 
 
-        <div>
+        <div class="col-md-12">
         <div id="gauge" class="200x160px"></div>
           <script>
             var g = new JustGage({
