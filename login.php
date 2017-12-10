@@ -11,24 +11,39 @@
         $username = stripslashes($username);
         $password = stripslashes($password);
 
-        $username = pg_prepare($db, $username);
-        $password = pg_prepare($db, $password);
+        // $username = pg_prepare($con, $username);
+        // $password = pg_prepare($con, $password);
 
-        $sql = "SELECT * FROM users WHERE username=$username";
-        $query = pg_query($db, $sql);
-        $row = pg_fetch_array($query);
+        $sql = "SELECT * FROM users WHERE username='$username' and password='$password'";
+        $result = pg_query($con, $sql);
+        if (!$result) {
+              die("Error in SQL query: " . pg_last_error());
+          }
+        // $row = pg_fetch_array($result);
+        // echo $result;
+        // $id = $row['user_id'];
+        // echo $row['user_id'];
+        // $db_password = $row['password'];
 
-        $id = $row['user_id'];
-        $db_password = $row['password'];
-
-        if($password == $db_password){
-            $_SESSION['username'] = $username;
-            $_SESSION['user_id'] = $id;
-            header("Location: apps_real.php");
-        } 
-        else{
-            echo "You didn't enter the correct details!";
-        }
+        // if($password == $db_password){
+            
+        //     header("Location: apps_real.php");
+        // } 
+        // else{
+        //     echo "You didn't enter the correct details!";
+        // }
+          
+      $count = pg_num_rows($result);
+      // echo $count;
+      // If result matched $myusername and $mypassword, table row must be 1 row
+		
+      if($count == 1) {
+         $_SESSION['login_user'] = $username;
+         
+         header("location:  apps_real.php");
+      }else {
+       echo "Your Login Name or Password is invalid";
+      }
 
 
     }
