@@ -1,13 +1,13 @@
 <?php 
+  include("db.php");
+
   session_start();
-  
-  include_once("db.php");
 
   $user_check = $_SESSION['user_id'];
 
   echo $user_check;
   
-  $ses_sql = pg_query($db,"select username from users where username = '$user_check' ");
+  $ses_sql = pg_query($db,"select user_id from users where user_id = '$user_check' ");
   
   $row = pg_fetch_array($ses_sql,pg_fetch_assoc);
   
