@@ -45,12 +45,16 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-more.js"></script> -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/17.2.3/css/dx.spa.css">
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/17.2.3/css/dx.common.css">
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/17.2.3/css/dx.light.css">
+
     <script src="js/dashboard.js"></script>
-    <script src="js/raphael.2.1.0.min.js"></script>
-    <script src="js/justgage.1.0.1.min.js"></script>
+    <script src="js/raphael-2.1.4.min.js"></script>
+   
+    <script src="js/justgage.js"></script>
+    <script src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/js/jquery-3.1.0.min.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/17.2.3/js/dx.all.js"></script>
   </head>
 
   <style>
@@ -75,6 +79,26 @@
 
 .highcharts-tooltip h3 {
     margin: 0.3em 0;
+}
+
+#gauge-demo {
+    width: 100%;
+    text-align: center;
+}
+
+#gauge-demo > div {
+    display: inline-block;
+}
+
+#circular-gauge-one,
+#circular-gauge-two,
+#circular-gauge-three {
+    width: 33%;
+}
+
+#bar-gauge-one,
+#bar-gauge-two {
+    width: 49%;
 }
 </style>
 
@@ -146,57 +170,159 @@
             </div>
           </div>
         </div>
-        
-	</div>
+  </div>      
+	
 
 
 
 
-  <div class="col-md-12"> <h1> Real-time Price</h1>
-  <!-- TradingView Widget BEGIN -->
-<div style="height: 440px; margin-bottom: 36px;">
-<script type="text/javascript" src="https://s3.amazonaws.com/tradingview/tv.js"></script>
-<script type="text/javascript">
-new TradingView.widget({
-"width": 1140,
-"autosize": true,
-"symbol": 'FX_IDC:EURUSD',
-"locale": "en",
-"interval": "D",
-"timezone": "exchange",
-"theme": "White",
-"toolbar_bg": "#f4f7f9",
-"hide_side_toolbar": false,
-"allow_symbol_change": true,
-"hideideas": true,
-"show_popup_button": true,
-"popup_width": "1000",
-"popup_height": "650",
-"save_image": true,
-"logo": {
-"src": "dailyfx",
-"bottom": "50px",
-"left": "20px",
-"width": "100px",
-"height": "30px"
-}
+      <div class="col-md-12"> <h1> Real-time Price</h1>
+            <!-- TradingView Widget BEGIN -->
+          <div style="height: 440px; margin-bottom: 36px;">
+          <script type="text/javascript" src="https://s3.amazonaws.com/tradingview/tv.js"></script>
+          <script type="text/javascript">
+          new TradingView.widget({
+          "width": 1140,
+          "autosize": true,
+          "symbol": 'FX_IDC:EURUSD',
+          "locale": "en",
+          "interval": "D",
+          "timezone": "exchange",
+          "theme": "White",
+          "toolbar_bg": "#f4f7f9",
+          "hide_side_toolbar": false,
+          "allow_symbol_change": true,
+          "hideideas": true,
+          "show_popup_button": true,
+          "popup_width": "1000",
+          "popup_height": "650",
+          "save_image": true,
+          "logo": {
+          "src": "dailyfx",
+          "bottom": "50px",
+          "left": "20px",
+          "width": "100px",
+          "height": "30px"
+          }
+          });
+          </script>
+          <br><br>
+    <!-- TradingView Widget END --> </div>
+
+                <div class="container-fluid">
+                  <div class="row">
+
+                      <!-- <div class="col-xs-6">        
+                              <div id="gauge" class="200x160px"></div>
+                                <script>
+                                  var g = new JustGage({
+                                    id: "gauge",
+                                    value: 40,
+                                    min: 0,
+                                    max: 100,
+                                    title: "Sentiment Meter"
+                                  });
+                                </script>
+                      </div>
+                 
+
+                  <div class="col-xs-6">      
+                          <div id="gauge" class="200x160px"></div>
+                            <script>
+                              var g = new JustGage({
+                                id: "gauge",
+                                value: 67,
+                                min: 0,
+                                max: 100,
+                                title: "Technical Meter"
+                              });
+                            </script>
+                  </div> -->
+                  <div class="dx-viewport demo-container">
+                  <div class="long-title"><h3>Grades of Goods</h3></div>
+                  <div id="gauge-demo">
+                      <div id="triangleMarker"></div>
+                      <div id="rectangleNeedle"></div>
+                      <div id="triangleNeedle"></div>
+                      <div id="textCloud"></div>
+                      <div id="twoColorNeedle"></div>
+                  </div>
+              </div>
+          
+
+                  </div>
+                </div>
+  
+<script>
+                  $(function() {
+    var circularOptions = {
+        geometry: {
+            startAngle: 180,
+            endAngle: 0
+        },
+        scale: {
+            startValue: 0,
+            endValue: 10,
+            tickInterval: 1
+        }
+    };
+
+    $("#circular-gauge-one").dxCircularGauge($.extend(true, {}, circularOptions, {
+        value: 9,
+        subvalues: [2, 8],
+        subvalueIndicator: {
+            type: "rectangleNeedle",
+            color: "#9B870C"
+        }
+    }));
+
+    $("#circular-gauge-two").dxCircularGauge($.extend(true, {}, circularOptions, {
+        value: 4,
+        subvalues: [2, 8],
+        subvalueIndicator: {
+            type: "twoColorNeedle",
+            color: "#779ECB",
+            secondColor: "#734F96"
+        }
+    }));
+
+    $("#circular-gauge-three").dxCircularGauge($.extend(true, {}, circularOptions, {
+        value: 5,
+        subvalues: [2, 8],
+        subvalueIndicator: {
+            type: "triangleNeedle",
+            color: "#779ECB"
+        }
+    }));
+
+    $("#bar-gauge-one").dxBarGauge({
+        startValue: 0,
+        endValue: 100,
+        values: [47.27, 65.32, 84.59, 71.86],
+        label: {
+            indent: 30,
+            format: {
+                type: "fixedPoint",
+                precision: 1
+            },
+            customizeText: function(arg) {
+                return arg.valueText + " %";
+            }
+        }
+    });
+
+    $("#bar-gauge-two").dxBarGauge({
+        startValue: -50,
+        endValue: 50,
+        baseValue: 0,
+        values: [-21.3, 14.8, -30.9, 45.2],
+        label: {
+            customizeText: function(arg) {
+                return arg.valueText + " mm";
+            }
+        },
+        palette: "ocean"
+    });
 });
 </script>
-<br><br>
-<!-- TradingView Widget END --> </div>
-
-
-        <div class="col-md-12">
-        <div id="gauge" class="200x160px"></div>
-          <script>
-            var g = new JustGage({
-              id: "gauge",
-              value: 67,
-              min: 0,
-              max: 100,
-              title: "Visitors"
-            });
-          </script>
-        </div>
-
 </html>
