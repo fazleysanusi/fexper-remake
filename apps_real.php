@@ -79,7 +79,6 @@
  
 
   <body>
-  <p>Welcome <?php echo $_SESSION['user_id']; ?>!</p>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
