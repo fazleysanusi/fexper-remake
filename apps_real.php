@@ -3,16 +3,18 @@
   
   include_once("db.php");
 
-  $user_check = $_SESSION['id'];
+  $user_check = $_SESSION['user_id'];
+
+  echo $user_check;
   
   $ses_sql = pg_query($db,"select username from users where username = '$user_check' ");
   
   $row = pg_fetch_array($ses_sql,pg_fetch_assoc);
   
   $login_session = $row['username'];
-  echo $row['username'];
+  
 
-  if(!isset($_SESSION['id'])){
+  if(!isset($_SESSION['user_id'])){
      header("location:login.php");
   }
   
