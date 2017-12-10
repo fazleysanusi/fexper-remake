@@ -1,6 +1,8 @@
 <?php 
   include("db.php");
   session_start();
+  echo $_SESSION['username'];
+  echo $_SESSION['user_id'];
 
   $user_check = $_SESSION['user_id'];
 
