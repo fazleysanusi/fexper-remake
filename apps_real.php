@@ -46,9 +46,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script> -->
     <script src="js/dashboard.js"></script>
+    <script src="raphael.2.1.0.min.js"></script>
+    <script src="justgage.1.0.1.min.js"></script>
   </head>
 
   <style>
@@ -121,19 +123,22 @@
 
   <div class="col-md-12">
 	    
-	    <div class="panel panel-info">
-          <div class="panel-heading"> 
+	    <div class="panel panel-info"> 
+          <div class="panel-heading"> Overall Recommendation
           
             <div class="row">
             
-            <div class="col-md-6 text-center" style="font-size:200%">
+            <div class="col-md-12 text-center" style="font-size:200%">
               
               <?php 
               $query = "SELECT * FROM decision order by recomend_id desc limit 1"; 
               $rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
-              while ($row = pg_fetch_row($rs)) { 
-                echo "$row[0] \n"; 
-              }
+              // while ($row = pg_fetch_row($rs)) { 
+              //   echo "$row[0] \n"; 
+              // }
+              $row = pg_fetch_row($rs);
+              $msg = $row[0];
+              echo $msg;
               ?>
               
             </div>
@@ -147,7 +152,7 @@
 
 
 
-  <div class="col-md-12">
+  <div class="col-md-12"> <h1> Real-time Price</h1>
   <!-- TradingView Widget BEGIN -->
 <div style="height: 440px; margin-bottom: 36px;">
 <script type="text/javascript" src="https://s3.amazonaws.com/tradingview/tv.js"></script>
@@ -179,5 +184,19 @@ new TradingView.widget({
 </script>
 <br><br>
 <!-- TradingView Widget END --> </div>
+
+
+        <div>
+        <div id="gauge" class="200x160px"></div>
+          <script>
+            var g = new JustGage({
+              id: "gauge",
+              value: 67,
+              min: 0,
+              max: 100,
+              title: "Visitors"
+            });
+          </script>
+        </div>
 
 </html>
