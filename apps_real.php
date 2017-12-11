@@ -81,17 +81,13 @@
         text-align: center;
       }
 
-      #g1 {
+      #g1,#g2,#g3 {
         width:400px; height:320px;
         display: inline-block;
         margin: 1em;
       }
 
-      #g2, #g3, #g4 {
-        width:400px; height:320px;
-        display: inline-block;
-        margin: 1em;
-      }
+     
 
       p {
         display: block;
@@ -216,7 +212,7 @@
 
   <!-- 3rd row -->
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div id="g1" ></div>
       <script>
         var g = new JustGage({
@@ -229,11 +225,25 @@
       </script>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div id="g2" ></div>
       <script>
         var g = new JustGage({
           id: "g2",
+          value: 45,
+          min: 0,
+          max: 100,
+          title: "Visitors"
+        });
+      </script>
+    </div>
+
+
+    <div class="col-md-4">
+      <div id="g3" ></div>
+      <script>
+        var g = new JustGage({
+          id: "g3",
           value: 45,
           min: 0,
           max: 100,
