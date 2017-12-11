@@ -247,8 +247,34 @@
           <br><br>
     <!-- TradingView Widget END --> </div>
 
-                <div class="container-fluid">
-                  <div class="row">
+        <script>
+                    var opts = {
+                        angle: 0, // The span of the gauge arc
+                        lineWidth: 0.56, // The line thickness
+                        radiusScale: 1, // Relative radius
+                        pointer: {
+                            length: 0.6, // // Relative to gauge radius
+                            strokeWidth: 0.04, // The thickness
+                            color: '#000000' // Fill color
+                        },
+                        limitMax: false,     // If false, max value increases automatically if value > maxValue
+                        limitMin: false,     // If true, the min value of the gauge will be fixed
+                        colorStart: '#6FADCF',   // Colors
+                        colorStop: '#8FC0DA',    // just experiment with them
+                        strokeColor: '#E0E0E0',  // to see which ones work best for you
+                        generateGradient: true,
+                        highDpiSupport: true,     // High resolution support
+                        
+                        };
+                    var target = document.getElementById('foo'); // your canvas element
+                    var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+                        gauge.maxValue = 3000; // set max gauge value
+                        gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+                        gauge.animationSpeed = 32; // set animation speed (32 is default value)
+                        gauge.set(1550); // set actual value
+        </script>
+
+        <div id="foo"></div>
 
                       <!-- <div class="col-xs-6">        
                               <div id="gauge" class="200x160px"></div>
@@ -275,91 +301,9 @@
                                 title: "Technical Meter"
                               });
                             </script>
-                  </div> -->
-                  <div id="jg1" class="gauge size-1"></div>
-    <div class="h-split"></div>
-    <div id="jg2" class="gauge size-2"></div>
-    <div class="h-split"></div>
-    <div id="jg3" class="gauge size-3"></div>
-    <div class="clear"></div>
-    <div id="jg4" class="gauge size-1"></div>
-    <div class="h-split"></div>
-    <div id="jg5" class="gauge size-2"></div>
-    <div class="h-split"></div>
-    <div id="jg6" class="gauge size-3"></div>
-    <script src="js/raphael-2.1.4.min.js"></script>
-    <script src="js/justgage.js"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        var jg1, jg2, jg3, jg4, jg5, jg6;
-
-        var defs1 = {
-            label: "label",
-            value: 65,
-            min: 0,
-            max: 100,
-            decimals: 0,
-            gaugeWidthScale: 0.6,
-            pointer: true,
-            pointerOptions: {
-                toplength: 10,
-                bottomlength: 10,
-                bottomwidth: 2
-            },
-            counter: true,
-            relativeGaugeSize: true
-        }
-
-        var defs2 = {
-            label: "label",
-            value: 35,
-            min: 0,
-            max: 100,
-            decimals: 0,
-            gaugeWidthScale: 0.6,
-            pointer: true,
-            pointerOptions: {
-                toplength: 5,
-                bottomlength: 15,
-                bottomwidth: 2
-            },
-            counter: true,
-            donut: true,
-            relativeGaugeSize: true
-        }
-
-        jg1 = new JustGage({
-            id: "jg1",
-            defaults: defs1
-        });
-
-        jg2 = new JustGage({
-            id: "jg2",
-            defaults: defs1
-        });
-
-        jg3 = new JustGage({
-            id: "jg3",
-            defaults: defs1
-        });
-
-        jg4 = new JustGage({
-            id: "jg4",
-            defaults: defs2
-        });
-
-        jg5 = new JustGage({
-            id: "jg5",
-            defaults: defs2
-        });
-
-        jg6 = new JustGage({
-            id: "jg6",
-            defaults: defs2
-        });
-    });
-    </script>
-    <script src="js/justgage.js"></script>
+                  </div> -->   
+    
+    
     <script src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/js/jquery-3.1.0.min.js"></script>
     <script src="https://cdn3.devexpress.com/jslib/17.2.3/js/dx.all.js"></script>
     <!-- Bootstrap core JavaScript
