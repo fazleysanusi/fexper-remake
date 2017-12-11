@@ -42,64 +42,16 @@
     <link href="css/starter-template.css" rel="stylesheet">
 
     <script src="js/ie-emulation-modes-warning.js"></script>
+    <script src="js/gauge.js"></script>
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/17.2.3/css/dx.spa.css">
+    <!-- <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/17.2.3/css/dx.spa.css">
     <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/17.2.3/css/dx.common.css">
-    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/17.2.3/css/dx.light.css">
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/17.2.3/css/dx.light.css"> -->
+    <script src="js/raphael.2.1.0.min.js"></script>
+    <script src="js/justgage.1.0.1.min.js"></script>
 
-   
-   
-    
-
-    <style>
-        body {
-            padding: 10px;
-            margin: 0px;
-        }
-
-        .clear:before,
-        .clear:after {
-            content: "";
-            display: table;
-        }
-
-        .clear:after {
-            clear: both;
-        }
-
-        .clear {
-            *zoom: 1;
-        }
-
-        .gauge {
-            display: block;
-            float: left;
-            border: 1px solid #ddd;
-            box-sizing: border-box;
-            margin: 0 0 1% 0;
-        }
-
-        .size-1 {
-            width: 20%;
-        }
-
-        .size-2 {
-            width: 30%;
-        }
-
-        .size-3 {
-            width: 48%;
-        }
-
-        .h-split {
-            display: block;
-            float: left;
-            width: 1%;
-            min-height: 100px;
-        }
-    </style>
   </head>
 
   <style>
@@ -124,26 +76,6 @@
 
 .highcharts-tooltip h3 {
     margin: 0.3em 0;
-}
-
-#gauge-demo {
-    width: 100%;
-    text-align: center;
-}
-
-#gauge-demo > div {
-    display: inline-block;
-}
-
-#circular-gauge-one,
-#circular-gauge-two,
-#circular-gauge-three {
-    width: 33%;
-}
-
-#bar-gauge-one,
-#bar-gauge-two {
-    width: 49%;
 }
 </style>
 
@@ -246,63 +178,8 @@
           </script>
           <br><br>
     <!-- TradingView Widget END --> </div>
-
-        <script>
-                    var opts = {
-                        angle: 0, // The span of the gauge arc
-                        lineWidth: 0.56, // The line thickness
-                        radiusScale: 1, // Relative radius
-                        pointer: {
-                            length: 0.6, // // Relative to gauge radius
-                            strokeWidth: 0.04, // The thickness
-                            color: '#000000' // Fill color
-                        },
-                        limitMax: false,     // If false, max value increases automatically if value > maxValue
-                        limitMin: false,     // If true, the min value of the gauge will be fixed
-                        colorStart: '#6FADCF',   // Colors
-                        colorStop: '#8FC0DA',    // just experiment with them
-                        strokeColor: '#E0E0E0',  // to see which ones work best for you
-                        generateGradient: true,
-                        highDpiSupport: true,     // High resolution support
-                        
-                        };
-                    var target = document.getElementById('foo'); // your canvas element
-                    var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-                        gauge.maxValue = 3000; // set max gauge value
-                        gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
-                        gauge.animationSpeed = 32; // set animation speed (32 is default value)
-                        gauge.set(1550); // set actual value
-        </script>
-
-        <div id="foo"></div>
-
-                      <!-- <div class="col-xs-6">        
-                              <div id="gauge" class="200x160px"></div>
-                                <script>
-                                  var g = new JustGage({
-                                    id: "gauge",
-                                    value: 40,
-                                    min: 0,
-                                    max: 100,
-                                    title: "Sentiment Meter"
-                                  });
-                                </script>
-                      </div>
-                 
-
-                  <div class="col-xs-6">      
-                          <div id="gauge" class="200x160px"></div>
-                            <script>
-                              var g = new JustGage({
-                                id: "gauge",
-                                value: 67,
-                                min: 0,
-                                max: 100,
-                                title: "Technical Meter"
-                              });
-                            </script>
-                  </div> -->   
     
+
     
     <script src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/js/jquery-3.1.0.min.js"></script>
     <script src="https://cdn3.devexpress.com/jslib/17.2.3/js/dx.all.js"></script>
