@@ -35,7 +35,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="js/dashboard.js"></script>
-		<script src="js/gauge.js"></script>
+	<script src="js/gauge.js"></script>
 
 
 		<style>
@@ -453,9 +453,17 @@
 	
 	
 		<div class="col-md-6">
-	    <div id='grafico4' class="grafico" style="height: 400px;"></div>
-	</div>
-
+				<div id="gauge" class="200x160px"></div>
+					<script>
+					var g = new JustGage({
+						id: "gauge",
+						value: 67,
+						min: 0,
+						max: 100,
+						title: "Visitors"
+					});
+					</script>
+		</div>
 	
 </div>
 </html>
