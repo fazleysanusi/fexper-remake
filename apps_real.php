@@ -49,12 +49,57 @@
     <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/17.2.3/css/dx.common.css">
     <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/17.2.3/css/dx.light.css">
 
-    <script src="js/dashboard.js"></script>
-    <script src="js/raphael-2.1.4.min.js"></script>
    
-    <script src="js/justgage.js"></script>
-    <script src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/js/jquery-3.1.0.min.js"></script>
-    <script src="https://cdn3.devexpress.com/jslib/17.2.3/js/dx.all.js"></script>
+   
+    
+
+    <style>
+        body {
+            padding: 10px;
+            margin: 0px;
+        }
+
+        .clear:before,
+        .clear:after {
+            content: "";
+            display: table;
+        }
+
+        .clear:after {
+            clear: both;
+        }
+
+        .clear {
+            *zoom: 1;
+        }
+
+        .gauge {
+            display: block;
+            float: left;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            margin: 0 0 1% 0;
+        }
+
+        .size-1 {
+            width: 20%;
+        }
+
+        .size-2 {
+            width: 30%;
+        }
+
+        .size-3 {
+            width: 48%;
+        }
+
+        .h-split {
+            display: block;
+            float: left;
+            width: 1%;
+            min-height: 100px;
+        }
+    </style>
   </head>
 
   <style>
@@ -125,15 +170,8 @@
     </nav>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-
+    
+   
 
 
   </body>
@@ -238,91 +276,98 @@
                               });
                             </script>
                   </div> -->
-                  <div class="dx-viewport demo-container">
-                  <div class="long-title"><h3>Grades of Goods</h3></div>
-                  <div id="gauge-demo">
-                      <div id="triangleMarker"></div>
-                      <div id="rectangleNeedle"></div>
-                      <div id="triangleNeedle"></div>
-                      <div id="textCloud"></div>
-                      <div id="twoColorNeedle"></div>
-                  </div>
-              </div>
-          
+                  <div id="jg1" class="gauge size-1"></div>
+    <div class="h-split"></div>
+    <div id="jg2" class="gauge size-2"></div>
+    <div class="h-split"></div>
+    <div id="jg3" class="gauge size-3"></div>
+    <div class="clear"></div>
+    <div id="jg4" class="gauge size-1"></div>
+    <div class="h-split"></div>
+    <div id="jg5" class="gauge size-2"></div>
+    <div class="h-split"></div>
+    <div id="jg6" class="gauge size-3"></div>
+    <script src="js/raphael-2.1.4.min.js"></script>
+    <script src="js/justgage.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var jg1, jg2, jg3, jg4, jg5, jg6;
 
-                  </div>
-                </div>
-  
-<script>
-                  $(function() {
-    var circularOptions = {
-        geometry: {
-            startAngle: 180,
-            endAngle: 0
-        },
-        scale: {
-            startValue: 0,
-            endValue: 10,
-            tickInterval: 1
-        }
-    };
-
-    $("#circular-gauge-one").dxCircularGauge($.extend(true, {}, circularOptions, {
-        value: 9,
-        subvalues: [2, 8],
-        subvalueIndicator: {
-            type: "rectangleNeedle",
-            color: "#9B870C"
-        }
-    }));
-
-    $("#circular-gauge-two").dxCircularGauge($.extend(true, {}, circularOptions, {
-        value: 4,
-        subvalues: [2, 8],
-        subvalueIndicator: {
-            type: "twoColorNeedle",
-            color: "#779ECB",
-            secondColor: "#734F96"
-        }
-    }));
-
-    $("#circular-gauge-three").dxCircularGauge($.extend(true, {}, circularOptions, {
-        value: 5,
-        subvalues: [2, 8],
-        subvalueIndicator: {
-            type: "triangleNeedle",
-            color: "#779ECB"
-        }
-    }));
-
-    $("#bar-gauge-one").dxBarGauge({
-        startValue: 0,
-        endValue: 100,
-        values: [47.27, 65.32, 84.59, 71.86],
-        label: {
-            indent: 30,
-            format: {
-                type: "fixedPoint",
-                precision: 1
+        var defs1 = {
+            label: "label",
+            value: 65,
+            min: 0,
+            max: 100,
+            decimals: 0,
+            gaugeWidthScale: 0.6,
+            pointer: true,
+            pointerOptions: {
+                toplength: 10,
+                bottomlength: 10,
+                bottomwidth: 2
             },
-            customizeText: function(arg) {
-                return arg.valueText + " %";
-            }
+            counter: true,
+            relativeGaugeSize: true
         }
-    });
 
-    $("#bar-gauge-two").dxBarGauge({
-        startValue: -50,
-        endValue: 50,
-        baseValue: 0,
-        values: [-21.3, 14.8, -30.9, 45.2],
-        label: {
-            customizeText: function(arg) {
-                return arg.valueText + " mm";
-            }
-        },
-        palette: "ocean"
+        var defs2 = {
+            label: "label",
+            value: 35,
+            min: 0,
+            max: 100,
+            decimals: 0,
+            gaugeWidthScale: 0.6,
+            pointer: true,
+            pointerOptions: {
+                toplength: 5,
+                bottomlength: 15,
+                bottomwidth: 2
+            },
+            counter: true,
+            donut: true,
+            relativeGaugeSize: true
+        }
+
+        jg1 = new JustGage({
+            id: "jg1",
+            defaults: defs1
+        });
+
+        jg2 = new JustGage({
+            id: "jg2",
+            defaults: defs1
+        });
+
+        jg3 = new JustGage({
+            id: "jg3",
+            defaults: defs1
+        });
+
+        jg4 = new JustGage({
+            id: "jg4",
+            defaults: defs2
+        });
+
+        jg5 = new JustGage({
+            id: "jg5",
+            defaults: defs2
+        });
+
+        jg6 = new JustGage({
+            id: "jg6",
+            defaults: defs2
+        });
     });
-});
-</script>
+    </script>
+    <script src="js/justgage.js"></script>
+    <script src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/js/jquery-3.1.0.min.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/17.2.3/js/dx.all.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+  
+
 </html>

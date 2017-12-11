@@ -34,13 +34,58 @@
     <link rel="icon" href="image/favicon-16x16.png">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="js/dashboard.js"></script>
-    <!--
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    -->
+
+
+		<style>
+        body {
+            padding: 10px;
+            margin: 0px;
+        }
+
+        .clear:before,
+        .clear:after {
+            content: "";
+            display: table;
+        }
+
+        .clear:after {
+            clear: both;
+        }
+
+        .clear {
+            *zoom: 1;
+        }
+
+        .gauge {
+            display: block;
+            float: left;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            margin: 0 0 1% 0;
+        }
+
+        .size-1 {
+            width: 20%;
+        }
+
+        .size-2 {
+            width: 30%;
+        }
+
+        .size-3 {
+            width: 48%;
+        }
+
+        .h-split {
+            display: block;
+            float: left;
+            width: 1%;
+            min-height: 100px;
+        }
+    </style>
+
+		
 </head>
 
 <style>
