@@ -170,7 +170,35 @@
 
   </div>
 
-<!-- 2nd row -->
+   <!-- 2nd row -->
+   <div class="row">
+    <div class="col-md-6">
+      <div id="g1" ></div>
+      <script>
+        var g = new JustGage({
+          id: "g1",
+          value: 67,
+          min: 0,
+          max: 100,
+          title: "Fundamental Analysis"
+        });
+      </script>
+    </div>
+
+    <div class="col-md-6">
+      <div id="g2" ></div>
+      <script>
+        var g = new JustGage({
+          id: "g2",
+          value: 45,
+          min: 0,
+          max: 100,
+          title: "Technical Analysis"
+        });
+      </script>
+    </div>
+
+<!-- 3rd row -->
 <div class="row">
 <div class="col-md-12">
     <h1> Real-time Price</h1>
@@ -210,33 +238,7 @@
   </div>
 </div>
 
-  <!-- 3rd row -->
-  <div class="row">
-    <div class="col-md-6">
-      <div id="g1" ></div>
-      <script>
-        var g = new JustGage({
-          id: "g1",
-          value: 67,
-          min: 0,
-          max: 100,
-          title: "Fundamental Analysis"
-        });
-      </script>
-    </div>
-
-    <div class="col-md-6">
-      <div id="g2" ></div>
-      <script>
-        var g = new JustGage({
-          id: "g2",
-          value: 45,
-          min: 0,
-          max: 100,
-          title: "Technical Analysis"
-        });
-      </script>
-    </div>
+ 
 
 
     
