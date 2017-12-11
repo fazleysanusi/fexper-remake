@@ -212,7 +212,7 @@
 
   <!-- 3rd row -->
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div id="g1" ></div>
       <script>
         var g = new JustGage({
@@ -220,12 +220,12 @@
           value: 67,
           min: 0,
           max: 100,
-          title: "Visitors"
+          title: "Fundamental Analysis"
         });
       </script>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div id="g2" ></div>
       <script>
         var g = new JustGage({
@@ -233,25 +233,13 @@
           value: 45,
           min: 0,
           max: 100,
-          title: "Visitors"
+          title: "Technical Analysis"
         });
       </script>
     </div>
 
 
-    <div class="col-md-4">
-      <div id="g3" ></div>
-      <script>
-        var g = new JustGage({
-          id: "g3",
-          value: 45,
-          min: 0,
-          max: 100,
-          title: "Visitors"
-        });
-      </script>
-    </div>
-  </div>
+    
 
   </div>
 
