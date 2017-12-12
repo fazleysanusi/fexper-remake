@@ -238,6 +238,11 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-6">
+  <iframe src='https://www.easycalculation.com/finance/embedded_pivot-points-trading.php' width='500' height='' frameborder='0' style='background:#F5F3F5;padding:20px;'></iframe>
+  </div>
+</div>
  
 
 

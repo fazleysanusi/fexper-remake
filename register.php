@@ -38,8 +38,7 @@ require('db.php');
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+   
     <script src="js/ie-emulation-modes-warning.js"></script>
 
     <!-- Latest compiled and minified CSS -->
@@ -58,7 +57,9 @@ require('db.php');
   <body>
 
   <div class="container">
-    <form class="form-signin" method="POST">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+      <form class="form-signin" method="POST">
       
       <?php if(isset($smsg)){ ?><div class="alert alert-success" role="alert"> <?php echo $smsg; ?> </div><?php } ?>
       <?php if(isset($fmsg)){ ?><div class="alert alert-danger" role="alert"> <?php echo $fmsg; ?> </div><?php } ?>
@@ -80,6 +81,8 @@ require('db.php');
         <a class="btn btn-lg btn-primary btn-block" href="login.php">Login</a>
     </form>
   </div>
+      </div>
+    </div>
   </div>
 
     <!-- Bootstrap core JavaScript
