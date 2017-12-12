@@ -1,5 +1,5 @@
 <html locale="en-US" og="http://ogp.me/ns#" class="wf-opensans3a3002c4002c6002c800-n4-inactive wf-inactive"><head>
-<title>Position Size Calculator - BabyPips.com</title>
+<title>Position Size Calculator</title>
 <meta content="The position size caalculator helps forex traders find the approximate amount of currency units to buy or sell to control your maximum risk per position." name="Description">
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 <script type="text/javascript" src="https://bam.nr-data.net/1/4609bcac3a?a=40062352&amp;v=1071.385e752&amp;to=cwwIFRcJVAlQFB5WU1wAEw0EElcXRklSVF5TFgoAEQlKFhoWXkZbRAoJDzoVUR9Q&amp;rst=3558&amp;ref=https://www.babypips.com/tools/position-size-calculator&amp;qt=1&amp;ap=61&amp;be=1008&amp;fe=3252&amp;dc=1898&amp;perf=%7B%22timing%22:%7B%22of%22:1513094421317,%22n%22:0,%22f%22:4,%22dn%22:6,%22dne%22:111,%22c%22:111,%22s%22:122,%22ce%22:252,%22rq%22:252,%22rp%22:964,%22rpe%22:971,%22dl%22:977,%22di%22:1896,%22ds%22:1896,%22de%22:1899,%22dc%22:3252,%22l%22:3252,%22le%22:3255%7D,%22navigation%22:%7B%7D%7D&amp;jsonp=NREUM.setToken"></script><script src="https://js-agent.newrelic.com/nr-1071.min.js"></script><script id="dfp" src="https://www.googletagservices.com/tag/js/gpt.js" async="" type="text/javascript" data-timestamp="Wed Dec 13 2017 00:00:23 GMT+0800 (+08)"></script><script id="ga" src="https://www.google-analytics.com/analytics.js" async="" type="text/javascript" data-timestamp="Wed Dec 13 2017 00:00:23 GMT+0800 (+08)"></script><script src="https://asset.pagefair.net/ads.min.js"></script><script src="https://asset.pagefair.com/measure.min.js"></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script type="text/javascript" src="https://www.adblockanalytics.com/analyze.js"></script><script type="text/javascript" src="https://www.adblockanalytics.com/ads.js"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"4609bcac3a","applicationID":"40062352","transactionName":"cwwIFRcJVAlQFB5WU1wAEw0EElcXRklSVF5TFgoAEQlKFhoWXkZbRAoJDzoVUR9Q","queueTime":1,"applicationTime":61,"agent":""}</script>
@@ -8,9 +8,6 @@
 
 <link crossorigin="" href="https://bpcdn.co" rel="preconnect">
 
-<script type="application/ld+json" data-schema="WebSite">{"@context":"https://schema.org","@type":"WebSite","name":"BabyPips.com","url":"https://www.babypips.com/","potentialAction":{"@type":"SearchAction","target":"https://www.babypips.com/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
-<script type="application/ld+json" data-schema="Organization">{"@context":"https://schema.org","@type":"Organization","name":"BabyPips.com","url":"https://www.babypips.com/","logo":"https://bpcdn.co/assets/images/organization-logo-4a25c2847d.png","sameAs":["https://facebook.com/babypips","https://twitter.com/babypips","https://plus.google.com/+babypips","https://www.linkedin.com/company/babypips"]}</script>
-
 <link rel="stylesheet" media="all" href="https://bpcdn.co/assets/stylesheets/application-8f9d823189.css">
 
 
@@ -18,13 +15,9 @@
 <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
 <link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
 <link href="/favicon-230x230.png" rel="icon" sizes="230x230" type="image/png">
-<meta content="BabyPips.com" name="application-name">
+
 <meta content="#ffffff" name="msapplication-TileColor">
-<meta content="/ms-icon-144x144.png" name="msapplication-TileImage">
-<meta content="/mstile-70x70.png" name="msapplication-square70x70logo">
-<meta content="/mstile-150x150.png" name="msapplication-square150x150logo">
-<meta content="/mstile-310x150.png" name="msapplication-wide310x150logo">
-<meta content="/mstile-310x310.png" name="msapplication-square310x310logo">
+
 
 <style type="text/css"></style><script id="omapi-script" src="//a.optnmstr.com/app/js/api.min.js" async=""></script><script type="text/javascript" async="" src="https://static.getclicky.com/js"></script><script type="text/javascript" async="" src="https://in.getclicky.com/in.php?site_id=31313&amp;res=1600x900&amp;lang=en&amp;secure=1&amp;type=pageview&amp;href=%2Ftools%2Fposition-size-calculator&amp;title=Position%20Size%20Calculator%20-%20BabyPips.com&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;jsuid=30657620&amp;mime=js&amp;x=0.884735281315109"></script><link rel="preload" href="https://adservice.google.com/adsid/integrator.js?domain=www.babypips.com" as="script"><script type="text/javascript" src="https://adservice.google.com/adsid/integrator.js?domain=www.babypips.com"></script><script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_170.js" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-14/html/container.html"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C800" media="all"><script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js" async=""></script><script async="true" type="text/javascript" src="https://s.adroll.com/j/roundtrip.js"></script><script type="text/javascript" async="" src="https://in.getclicky.com/in.php?site_id=31313&amp;type=ping&amp;jsuid=30657620&amp;mime=js&amp;x=0.10750357629932616"></script><script type="text/javascript" async="" src="https://in.getclicky.com/in.php?site_id=31313&amp;type=ping&amp;jsuid=30657620&amp;mime=js&amp;x=0.6208970776152589"></script><script type="text/javascript" async="" src="https://in.getclicky.com/in.php?site_id=31313&amp;type=ping&amp;jsuid=30657620&amp;mime=js&amp;x=0.8473207749010472"></script></head>
 <body>
