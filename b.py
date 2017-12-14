@@ -1,6 +1,9 @@
+# this the script that run the algorithm to perform technical analysis
+
 import sys
 import psycopg2
 import datetime
+import pytz
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
 
@@ -45,13 +48,18 @@ def output(new, old):
 c = CurrencyRates()
 d = CurrencyCodes()
 
-# (year, month, day, hour, minute, second, microsecond )
-date_obj = datetime.datetime(2014, 5, 23, 18, 36, 28, 151012)
+# price date (year, month, day, hour, minute, second, microsecond )
+utc = pytz.utc
+# utc_dt = datetime.datetime(2002, 10, 27, 6, 0, 0, tzinfo=utc)
+
+
+date_obj = datetime.datetime(2017, 12, 14, 21, 0, 0, 0, tzinfo=utc)
+# date_obj = datetime.datetime(2017, 11, 1, 21)
 # USD rate
-rate = c.get_rates('USD', date_obj)
+rate = c.get_rates('USD')
 
 # get EUR price
-EUR_rate = float(c.get_rate('EUR', 'USD'))
+EUR_rate = float(c.get_rate('EUR', 'USD', date_obj))
 
 # display the rate EUR to USD
 print('EUR Rate: ', d.get_symbol('USD'), EUR_rate)
