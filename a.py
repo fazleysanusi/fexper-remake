@@ -24,93 +24,88 @@ summary = article.summary
 
 connection = psycopg2.connect(
     database="postgres", user="postgres", password="fexper", host="127.0.0.1", port="5432")
-    database = "postgres", user = "postgres", password = "fexper", host = "127.0.0.1", port = "5432")
+
+
+cursor = connection.cursor()
 
 
 def savenews(date, authors, text, nlp, summary):
-    news_id=None
+    news_id = None
     cursor.execute("insert into news values (%s, %s, %s, %s, %s) returning news_id",
                    (date, authors, text, nlp, summary))
-                   (date, authors, text, nlp, summary))
-    news_id=cursor.fetchone()[0]
+    news_id = cursor.fetchone()[0]
     connection.commit()
-
     return news_id
 
 
 def callnews(news_no):
     cursor.execute("select text from news where news_id=(%s)", (news_no, ))
-    text_news=cursor.fetchall()
+    text_news = cursor.fetchall()
     connection.commit()
     return text_news
 
 
 def word_feats(words):
+    return dict([(word, True) for word in words])
+
 
 def analyse(buy, sell):
-
-        result='buy'
-def analyse(buy, sell):
-        result='sell'
-        result='buy'
-        result='volatile'
-        result='sell'
-
-
+    if buy > sell:
+        result = 'buy'
+    if buy < sell:
+        result = 'sell'
     if buy == sell:
-        result='volatile'
-    cursor.execute(
-        "insert into sentiment values (%s) returning analysis_id", (result,))
+        result = 'volatile'
+    return result
 
 
 def saveanalysis(result):
-
-    analysis_id=None
+    analysis_id = None
     cursor.execute(
         "insert into sentiment values (%s) returning analysis_id", (result,))
-    analysis_id=cursor.fetchone()[0]
+    analysis_id = cursor.fetchone()[0]
     connection.commit()
     return analysis_id
-positive_vocab=['awesome', 'outstanding', 'fantastic',
+
+
+news_no = savenews(date, authors, text, nlp,  summary)
+print('news_id:', news_no)
+corpus = callnews(news_no)
+
+
+positive_vocab = ['awesome', 'outstanding', 'fantastic',
                   'terrific', 'good', 'nice', 'great', ':)']
-negative_vocab=['bad', 'terrible', 'useless', 'hate', ':(']
-neutral_vocab=['movie', 'the', 'sound', 'was',
+negative_vocab = ['bad', 'terrible', 'useless', 'hate', ':(']
+neutral_vocab = ['movie', 'the', 'sound', 'was',
                  'is', 'actors', 'did', 'know', 'words', 'not']
 
+positive_features = [(word_feats(pos), 'pos') for pos in positive_vocab]
+negative_features = [(word_feats(neg), 'neg') for neg in negative_vocab]
+neutral_features = [(word_feats(neu), 'neu') for neu in neutral_vocab]
 
-positive_vocab=['awesome', 'outstanding', 'fantastic',
-                  'terrific', 'good', 'nice', 'great', ':)']
+train_set = negative_features + positive_features + neutral_features
 
-neutral_vocab=['movie', 'the', 'sound', 'was',
+classifier = NaiveBayesClassifier.train(train_set)
 
-classifier=NaiveBayesClassifier.train(train_set)
-
-negative_features=[(word_feats(neg), 'neg') for neg in negative_vocab]
-neutral_features=[(word_feats(neu), 'neu') for neu in neutral_vocab]
-
-train_set=negative_features + positive_features + neutral_features
-
-classifier=NaiveBayesClassifier.train(train_set)
-
-    classResult=classifier.classify(word_feats(word))
-neg=0
-pos=0
-sentence=str(corpus)
-sentence=sentence.lower()
-
+# Predict
+neg = 0
+pos = 0
+sentence = str(corpus)
+sentence = sentence.lower()
+words = sentence.split(' ')
 for word in words:
-    classResult=classifier.classify(word_feats(word))
-positive=float(pos) / len(words)
-negative=float(neg) / len(words)
+    classResult = classifier.classify(word_feats(word))
+    if classResult == 'neg':
+        neg = neg + 1
     if classResult == 'pos':
-        pos=pos + 1
+        pos = pos + 1
 
 # print('Positive: ' + str(float(pos)/len(words)))
 # print('Negative: ' + str(float(neg)/len(words)))
-positive=float(pos) / len(words)
-cursor.close()
+positive = float(pos) / len(words)
+negative = float(neg) / len(words)
 
-result=analyse(positive, negative)
+result = analyse(positive, negative)
 print('analysis_id:', saveanalysis(result))
 
 
