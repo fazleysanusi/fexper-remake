@@ -4,41 +4,51 @@ import datetime
 from forex_python.converter import CurrencyRates
 from forex_python.converter import CurrencyCodes
 
-connection = psycopg2.connect(database="postgres", user = "postgres", password = "fexper", host = "127.0.0.1", port = "5432")
+connection = psycopg2.connect(
+    database="postgres", user="postgres", password="fexper", host="127.0.0.1", port="5432")
 cursor = connection.cursor()
+
 
 def insertprice(EUR_rate):
     price_id = None
-    cursor.execute("insert into finance values (%s) returning price_id", (EUR_rate, ))
+    cursor.execute(
+        "insert into finance values (%s) returning price_id", (EUR_rate, ))
     price_id = cursor.fetchone()[0]
     connection.commit()
     return price_id
+
+
 def oldprice(price_id):
-    cursor.execute("select price from finance where price_id=(%s)", (price_id, ))
+    cursor.execute(
+        "select price from finance where price_id=(%s)", (price_id, ))
     price = cursor.fetchone()[0]
     connection.commit()
     return price
-    
-def output(new, old):
-        if new > old :
-            trend = 'Uptrend'
-        if new < old :
-            trend = 'Downtrend'
-        if new == old :
-            trend = 'volatile'
 
-        output_id = None
-        cursor.execute("insert into technical values (%s) returning output_id", (trend, ))
-        output_id = cursor.fetchone()[0]
-        connection.commit()
-        return output_id
-    
-    
+
+def output(new, old):
+    if new > old:
+        trend = 'Uptrend'
+    if new < old:
+        trend = 'Downtrend'
+    if new == old:
+        trend = 'volatile'
+
+    output_id = None
+    cursor.execute(
+        "insert into technical values (%s) returning output_id", (trend, ))
+    output_id = cursor.fetchone()[0]
+    connection.commit()
+    return output_id
+
 
 c = CurrencyRates()
 d = CurrencyCodes()
+
+# (year, month, day, hour, minute, second, microsecond )
+date_obj = datetime.datetime(2014, 5, 23, 18, 36, 28, 151012)
 # USD rate
-rate = c.get_rates('USD')
+rate = c.get_rates('USD', date_obj)
 
 # get EUR price
 EUR_rate = float(c.get_rate('EUR', 'USD'))
