@@ -53,7 +53,7 @@ utc = pytz.utc
 # utc_dt = datetime.datetime(2002, 10, 27, 6, 0, 0, tzinfo=utc)
 
 
-date_obj = datetime.datetime(2017, 12, 14, 21, 0, 0, 0, tzinfo=utc)
+date_obj = datetime.datetime(2017, 12, 15, 21, 0, 0, 0, tzinfo=utc)
 # date_obj = datetime.datetime(2017, 11, 1, 21)
 # USD rate
 rate = c.get_rates('USD')

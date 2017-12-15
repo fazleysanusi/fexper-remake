@@ -194,7 +194,7 @@
       <div class="row">
          <div>
       <section class="page-index-header calculator-header">
-         <h1 class="title">Position Size Calculator</h1>
+         <h4 class="title">Position Size Calculator</h4>
          
       </section>
       <section class="calculator">
@@ -401,6 +401,16 @@
    <div class="divider"></div>
 
    <!-- 4th row -->
+        
+    <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h2 class="display-3">Fluid jumbotron</h2>
+      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    </div>
+    </div>
+    <div class="divider"></div>
+
+   <!-- 5th row -->
    <div class="row">
          <div class="col-md-12">
             <h1> Real-time Price</h1>
