@@ -55,7 +55,7 @@ def averageResistance(price, price2):
 # def updateResistance(price, average, price2):
 #     price_id = None
 #     cursor.execute(
-#         "insert into finance values (%s) returning price_id", (EUR_rate, ))
+#         "insert into finance values (%s,%s,%s,%s,%s,%s) returning price_id", (EUR_rate, ))
 #     price_id = cursor.fetchone()[0]
 #     connection.commit()
 #     return price_id
@@ -85,7 +85,16 @@ def averageSupport(price, price2):
     return average
 
 
+def savesnr(high, lowhigh, resistance, low, lowlow, support):
+    snr_id = None
+    cursor.execute("insert into snr values (%s, %s, %s, %s, %s, %s) returning snr_id",
+                   (high, lowhigh, resistance, low, lowlow, support))
+    snr_id = cursor.fetchone()[0]
+    connection.commit()
+    return snr_id
+
 # price = select30()
+
 
 # print the resistance zone
 price = top1()
@@ -104,3 +113,7 @@ average2 = round(averageSupport(price3, price4), 4)
 print("Low Price: ", price3)
 print("2nd low Price: ", price4)
 print("Best Support Line: ", average2)
+snr_id = savesnr(price, price2, average, price3, price4, average2)
+print(snr_id)
+# cursor.execute("insert into snr values (%s,%s,%s,%s,%s,%s)",
+#                (price, price2, average, price3, price4, average2))
