@@ -66,51 +66,35 @@
         background-size: 100% 100%;
       }
 
-      .support{
-        color: green;
+      .topright {
+      position: absolute;
+      top: 70px;
+      left: 200px;
+      color: white;
+      font-size: 26px;
       }
-      .resitance{
-        color: red;
-      }
-      </style>   
-      
 
-   </head>
-   <style>
-      .grafico {
-      min-width: 310px;
-      max-width: 400px;
-      height: 280px;
-      margin: 0 auto
+      .bottomright {
+      position: absolute;
+      bottom: 80px;
+      right: 200px;
+      font-size: 26px;
+      color: white;
       }
-      .main-header {
-      font-size: x-large;
-      color: #888;
-      /* font-family: Verdana; */
-      margin-bottom: 20px;
-      }
-      .destaque {
-      color: #f88;
-      font-weight: bolder;
-      }
-      .highcharts-tooltip h3 {
-      margin: 0.3em 0;
+      .updatesnr {
+      position: absolute;
+      bottom: 15px;
+      right: 95px;
+      font-size: 18px;
+      color: white;
       }
       body {
       text-align: center;
       }
-      #g1,#g2,#g3 {
-      width:400px; height:320px;
-      display: inline-block;
-      margin: 1em;
-      }
-      p {
-      display: block;
-      width: 450px;
-      margin: 2em auto;
-      text-align: left;
-      }
-   </style>
+      
+      </style>   
+   </head>
+
    <body>
       <nav class="navbar navbar-inverse navbar-fixed-top">
          <div class="container">
@@ -417,11 +401,23 @@
    <div class="divider"></div>
 
    <!-- 4th row -->
-    <div id="content-box">   
+   <h2 class="title">Support & Resistance</h2>
+    <div id="content-box" style="position: relative;">   
       <div>
      <!-- <img src="image/flatgraph.png" alt="" srcset=""> -->
-        <p class="text-md-left " style="text-size:20px; font-weight:bold; -webkit-text-stroke: 1px black;">Resistance @</p>
-        <p class="text-right " style="text-size:20px; font-weight:bold;  -webkit-text-stroke: 1px black;">Support @</p>
+        <div class="topright">Resistance @
+        <?php 
+                        $query = "select resistance, support,date from snr where date=(select MAX(date) from snr)"; 
+                        $rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
+                        $row = pg_fetch_row($rs);
+                        $msg = $row[0];
+                        echo $msg;
+                        $msgSupport = $row[1];
+                        $msgdate = $row[2];
+                        ?>
+        </div>
+        <div class="bottomright">Support @<?php echo $msgSupport?></div>
+        <div class="updatesnr">Last Updated <?php echo $msgdate?></div>
       </div>
       </div>
           <div class="divider"></div>
