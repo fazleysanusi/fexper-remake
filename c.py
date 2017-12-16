@@ -28,9 +28,9 @@ def decisiontree(sent, tech):
     if sent == [('buy',)] and tech == [('volatile',)]:
         decision = 'Buy now!'
     if sent == [('sell',)] and tech == [('sell',)]:
-        decision = 'Buy now!'
+        decision = 'Sell now!'
     if sent == [('sell',)] and tech == [('volatile',)]:
-        decision = 'Buy now!'
+        decision = 'Sell now!'
     else:
         decision = 'Please hold, market is under volatility condition'
     return decision
