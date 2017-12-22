@@ -72,9 +72,9 @@
         box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
 
         /* background-image: url('image/flatgraph.png'); */
-        background-color: coral;
+        /* background-color: coral;
         background-repeat: no-repeat;
-        background-size: 100% 100%;
+        background-size: 100% 100%; */
       }
 
       .topright {
@@ -165,26 +165,41 @@
          </div>
       </div>
    </div>
-   <div class="col-sm-12">
+   
    <div class="divider"></div>
-   </div>
+  
 
 
    <!-- 2nd row -->
-   
+
    <div class="row">
-     
+   <!-- <div class="row" style="height:400px;"> -->
       <div class="col-md-6">
          <div id="g1" ></div>
-         <script>
-            var g = new JustGage({
+          <!-- <script type="text/javascript" src="jquery.js"></script> -->
+          <script type="text/javascript">
+            $(document).ready(function() {
+              // setInterval(function () {
+              //   $('#show').load('data.php')
+              // }, 10000);
+              $.ajax({
+                url: "data.php", 
+                success: function(result){
+                $("#show").append(result);
+              var g = new JustGage({
               id: "g1",
-              value: 67,
+              value: result,
+              decimals: 2,
               min: 0,
               max: 100,
-              title: "Fundamental Analysis"
+              relativeGaugeSize: true,
+              title: "Technical Analysis",
+              label:"Percent(%)"
             });
-         </script>
+            }});
+            });
+          </script>
+        
       </div>
      
       
@@ -194,45 +209,21 @@
             var g = new JustGage({
               id: "g2",
               value: 45,
+              decimals: 2,
               min: 0,
               max: 100,
-              title: "Technical Analysis"
+              relativeGaugeSize: true,
+              title: "Fundamental Analysis",
+              label:"Percent(%)"
             });
          </script>   
       </div>
       <!-- </div> -->
-      <div class="col-sm-12">
-      <div class="divider"></div>
+      <div class="col-sm-6"><p>Uptrend</p></div>
+      <div class="col-sm-6"><p>Positive</p></div>
+      <div class="col-md-12"><div class="divider"></div></div>
       </div>
-
-      <div class="col-md-12">
-      <div id="container">
-        <div id="result"></div>
-        <ul id="user"></ul>
-      </div>
-     
-      <script>
-          $(document).ready(function(){
-              // $('#result').load('test.html', function(
-              //     responseTxt, statusTxt, xhr){
-              //       if(statusTxt == "success"){
-              //           alert("It went fine");
-              //       } else if(statusTxt == "error"){
-              //           alert("Error: "+xhr.statusText);
-              //       }
-              //     });
-              $.get('test.html', function(data){
-                  $('#result').html(data);
-              });
-              $.getJSON('users.json', function(data){
-                  $each(data, function(i user){
-
-                  });
-              });
-          });
-      </script>
-       </div>
-
+      
 
 
       <!-- 3rd row -->
@@ -461,19 +452,7 @@
       </div>
       </div>
           <div class="divider"></div>
-
-          <div id="content-box2" style="position: relative;"> decision   
-    <div id="show"></div>
-
-          <!-- <script type="text/javascript" src="jquery.js"></script> -->
-          <script type="text/javascript">
-            $(document).ready(function() {
-              setInterval(function () {
-                $('#show').load('data.php')
-              }, 10000);
-            });
-          </script>
-    </div> 
+   
 
    <!-- 5th row -->
    <div class="row">

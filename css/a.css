@@ -1,8 +1,10 @@
 body {
-    background: url('http://farm3.staticflickr.com/2832/12303719364_c25cecdc28_b.jpg') fixed;
-    background-size: cover;
-    padding: 0;
-    margin: 0;
+    /* background: url("../image/back.jpg") no-repeat center center fixed;
+    filter: blur(50%);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
 }
 
 .wrap {
@@ -20,7 +22,7 @@ p.form-title {
     font-size: 20px;
     font-weight: 600;
     text-align: center;
-    color: #FFFFFF;
+    color: rgb(0, 0, 0);
     margin-top: 15%;
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -38,14 +40,14 @@ form.login input[type="password"] {
     padding: 5px 10px;
     background: 0;
     border: 0;
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid rgb(177, 175, 175);
     outline: 0;
     font-style: italic;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 1px;
     margin-bottom: 5px;
-    color: #FFFFFF;
+    color: rgb(0, 0, 0);
     outline: 0;
 }
 
@@ -80,7 +82,7 @@ form.login label,
 form.login a {
     font-size: 12px;
     font-weight: 400;
-    color: #FFFFFF;
+    color: rgb(0, 0, 0);
 }
 
 form.login a {
@@ -112,7 +114,7 @@ form.login a:hover {
     position: relative;
     margin-top: 22%;
     z-index: 999;
-    background: #FFFFFF;
+    background: rgb(203, 203, 203);
     padding: 20px 15px;
 }
 

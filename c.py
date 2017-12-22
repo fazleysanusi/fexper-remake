@@ -23,16 +23,16 @@ def techInput():
 
 
 def decisiontree(sent, tech):
-    if sent == [('buy',)] and tech == [('buy',)]:
+    if sent == [('buy',)] and tech == [('Uptrend',)]:
         decision = ' Buy now! '
     if sent == [('buy',)] and tech == [('volatile',)]:
         decision = 'Buy now!'
-    if sent == [('sell',)] and tech == [('sell',)]:
+    if sent == [('sell',)] and tech == [('Downtrend',)]:
         decision = 'Sell now!'
     if sent == [('sell',)] and tech == [('volatile',)]:
         decision = 'Sell now!'
-    else:
-        decision = 'Please hold, market is under volatility condition'
+    # else:
+    #     decision = 'Please hold, market is under volatility condition'
     return decision
 
 

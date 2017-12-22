@@ -64,7 +64,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<link rel="stylesheet" href="css/logins.css">
+<link rel="stylesheet" href="css/a.css">
     <script src="js/logins.js"></script>
 </head>
     
@@ -102,12 +102,12 @@
                     <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
                 </div>
             </div>
-            <div class="wrap">
+            <div class="wrap" >
                 <p class="form-title">
                     Sign In</p>
-                <form class="login" action="login.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                <input type="text" placeholder="Username" name="username" />
-                <input type="password" placeholder="Password" name="password" />
+                <form class="login" action="login.php" method="post" enctype="multipart/form-data" >
+                <input type="text" placeholder="Username" name="username" autocomplete="off" />
+                <input type="password" placeholder="Password" name="password" autocomplete="off"/>
                 <input name="login" type="submit" value="login" class="btn btn-success btn-sm" />
                 <div>
                     <div class="row">

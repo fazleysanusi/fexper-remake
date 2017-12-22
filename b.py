@@ -21,9 +21,17 @@ def insertprice(EUR_rate):
     return price_id
 
 
-def oldprice(price_id):
+def oldprice():
     cursor.execute(
-        "select price from finance where price_id=(%s)", (price_id, ))
+        "select * from finance where price_id=(select MAX(price_id) from finance)-1;")
+    price = cursor.fetchone()[0]
+    connection.commit()
+    return price
+
+
+def newprice():
+    cursor.execute(
+        "select * from finance where price_id=(select MAX(price_id) from finance);")
     price = cursor.fetchone()[0]
     connection.commit()
     return price
@@ -53,7 +61,7 @@ utc = pytz.utc
 # utc_dt = datetime.datetime(2002, 10, 27, 6, 0, 0, tzinfo=utc)
 
 
-date_obj = datetime.datetime(2017, 12, 16, 21, 0, 0, 0, tzinfo=utc)
+date_obj = datetime.datetime(2017, 12, 19, 21, 0, 0, 0, tzinfo=utc)
 # date_obj = datetime.datetime(2017, 11, 1, 21)
 # USD rate
 rate = c.get_rates('USD')
@@ -62,15 +70,20 @@ rate = c.get_rates('USD')
 EUR_rate = float(c.get_rate('EUR', 'USD', date_obj))
 
 # display the rate EUR to USD
-print('EUR Rate: ', d.get_symbol('USD'), EUR_rate)
+# print('EUR Rate: ', d.get_symbol('USD'), EUR_rate)
 
 price_id = insertprice(EUR_rate)
 
+newprice = newprice()
 
-oldprice = oldprice(price_id)
+print('Previous EUR Rate: ', d.get_symbol('USD'), newprice)
+
+
+oldprice = oldprice()
+
 print('Previous EUR Rate: ', d.get_symbol('USD'), oldprice)
 
-print('output id : ', output(EUR_rate, oldprice))
+print('output id : ', output(newprice, oldprice))
 
 
 connection.close()
