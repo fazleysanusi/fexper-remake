@@ -61,7 +61,7 @@ utc = pytz.utc
 # utc_dt = datetime.datetime(2002, 10, 27, 6, 0, 0, tzinfo=utc)
 
 
-date_obj = datetime.datetime(2017, 12, 19, 21, 0, 0, 0, tzinfo=utc)
+date_obj = datetime.datetime(2017, 12, 22, 21, 0, 0, 0, tzinfo=utc)
 # date_obj = datetime.datetime(2017, 11, 1, 21)
 # USD rate
 rate = c.get_rates('USD')
@@ -76,7 +76,7 @@ price_id = insertprice(EUR_rate)
 
 newprice = newprice()
 
-print('Previous EUR Rate: ', d.get_symbol('USD'), newprice)
+print('NEW EUR Rate: ', d.get_symbol('USD'), newprice)
 
 
 oldprice = oldprice()

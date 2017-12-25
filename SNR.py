@@ -85,15 +85,43 @@ def averageSupport(price, price2):
     return average
 
 
-def savesnr(high, lowhigh, resistance, low, lowlow, support):
+def savesnr(high, lowhigh, resistance, low, lowlow, support, analysis):
     snr_id = None
-    cursor.execute("insert into snr values (%s, %s, %s, %s, %s, %s) returning snr_id",
-                   (high, lowhigh, resistance, low, lowlow, support))
+    cursor.execute("insert into snr values (%s, %s, %s, %s, %s, %s, %s) returning snr_id",
+                   (high, lowhigh, resistance, low, lowlow, support, analysis))
     snr_id = cursor.fetchone()[0]
     connection.commit()
     return snr_id
 
-# price = select30()
+
+def snranalysis(high, lowerhigh, low, higherlow, trend):
+    prices = 0
+    decision = 'hold'
+    cursor.execute(
+        "select * from finance order by date desc limit 1")
+    prices = cursor.fetchone()[0]
+
+    if (prices >= low and prices <= high):
+        if (prices <= high and prices >= lowerhigh):
+            if (trend == [('Downtrend',)]):
+                decision = 'Downtrend'
+    elif (prices >= low and prices <= high):
+        if (prices <= higherlow and prices >= low):
+            if (trend == [('Uptrend',)]):
+                decision = 'Uptrend'
+    else:
+        decision = 'volatile'
+
+    return decision
+
+
+def trend():
+    trend = 'trend'
+    cursor.execute(
+        "select * from technical order by output_id desc limit 1")
+    prices = cursor.fetchone()[0]
+    return trend
+
 
 
 # print the resistance zone
@@ -110,10 +138,13 @@ print("\n==============\n")
 price3 = low1()
 price4 = low2()
 average2 = round(averageSupport(price3, price4), 4)
+trend = trend()
+final_decision = snranalysis(price, price2, price3, price4, trend)
+
 print("Low Price: ", price3)
 print("2nd low Price: ", price4)
 print("Best Support Line: ", average2)
-snr_id = savesnr(price, price2, average, price3, price4, average2)
-print(snr_id)
-# cursor.execute("insert into snr values (%s,%s,%s,%s,%s,%s)",
-#                (price, price2, average, price3, price4, average2))
+snr_id = savesnr(price, price2, average, price3,
+                 price4, average2, final_decision)
+print("Support & Resistance ID: ", snr_id)
+print("Support & Resistance: ", final_decision)

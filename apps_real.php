@@ -172,8 +172,8 @@
 
    <!-- 2nd row -->
 
-   <div class="row">
-   <!-- <div class="row" style="height:400px;"> -->
+   <!-- <div class="row"> -->
+   <div class="row" style="height:40%;">
       <div class="col-md-6">
          <div id="g1" ></div>
           <!-- <script type="text/javascript" src="jquery.js"></script> -->
@@ -219,8 +219,10 @@
          </script>   
       </div>
       <!-- </div> -->
-      <div class="col-sm-6"><p>Uptrend</p></div>
-      <div class="col-sm-6"><p>Positive</p></div>
+      <div class="row" style="font-family: VAGRundschriftD, Helvetica, Arial, sans-serif;">
+      <div class="col-sm-6">Uptrend</div>
+      <div class="col-sm-6">Positive  </div>
+      </div>
       <div class="col-md-12"><div class="divider"></div></div>
       </div>
       
@@ -432,6 +434,7 @@
    <div class="divider"></div>
 
    <!-- 4th row -->
+   <div class="container">
    <h2 class="title">Support & Resistance</h2>
     <div id="content-box" style="position: relative;">   
       <div>
@@ -452,10 +455,11 @@
       </div>
       </div>
           <div class="divider"></div>
+          </div>
    
 
    <!-- 5th row -->
-   <div class="row">
+   <div class="container">
          <div class="col-md-12">
             <h1> Real-time Price</h1>
             <!-- TradingView Widget BEGIN -->
