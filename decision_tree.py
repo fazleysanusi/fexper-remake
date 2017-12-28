@@ -31,47 +31,48 @@ def snrInput():
 
 
 def techresult(pt, sr):
-    # 1
     if pt == [('Uptrend',)] and sr == [('Uptrend',)]:
-        decision = 'Uptrend'
-    # 2
+        a = 'Uptrend'
     elif pt == [('Uptrend',)] and sr == [('Downtrend',)]:
-        decision = 'volatile'
-    # 3
+        a = 'volatile'
     elif pt == [('Uptrend',)] and sr == [('volatile',)]:
-        decision = 'Uptrend'
-    # 4
+        a = 'Uptrend'
     elif pt == [('volatile',)] and sr == [('Uptrend',)]:
-        decision = 'Uptrend'
-    # 5
+        a = 'Uptrend'
     elif pt == [('volatile',)] and sr == [('Downtrend',)]:
-        decision = 'Downtrend'
-    # 6
+        a = 'Downtrend'
     elif pt == [('volatile',)] and sr == [('volatile',)]:
-        decision = 'volatile'
-    # 7
+        a = 'volatile'
     elif pt == [('Downtrend',)] and sr == [('Uptrend',)]:
-        decision = 'volatile'
-    # 8
+        a = 'volatile'
     elif pt == [('Downtrend',)] and sr == [('Downtrend',)]:
-        decision = 'Downtrend'
-    # 9
+        a = 'Downtrend'
     elif pt == [('Downtrend',)] and sr == [('volatile',)]:
-        decision = 'Downtrend'
-    return decision
+        a = 'Downtrend'
+    else:
+        a = 'unkown'
+    return a
 
 
 def decisiontree(sent, tech):
-    if sent == [('buy',)] and tech == [('Uptrend',)]:
+    if sent == [('positive',)] and tech == 'Uptrend':
         decision = 'Buy now!'
-    elif sent == [('buy',)] and tech == [('volatile',)]:
+    elif sent == [('neutral',)] and tech == 'Uptrend':
         decision = 'Buy now!'
-    elif sent == [('sell',)] and tech == [('Downtrend',)]:
-        decision = 'Sell now!'
-    elif sent == [('sell',)] and tech == [('volatile',)]:
-        decision = 'Sell now!'
-    else:
+    elif sent == [('negative',)] and tech == 'Uptrend':
         decision = 'Please hold, market is under volatility condition'
+    elif sent == [('positive',)] and tech == 'volatile':
+        decision = 'Buy now!'
+    elif sent == [('neutral',)] and tech == 'volatile':
+        decision = 'Please hold, market is under volatility condition'
+    elif sent == [('negative',)] and tech == 'volatile':
+        decision = 'Sell now!'
+    elif sent == [('positive',)] and tech == 'Downtrend':
+        decision = 'Please hold, market is under volatility condition'
+    elif sent == [('neutral',)] and tech == 'Downtrend':
+        decision = 'Sell now!'
+    elif sent == [('negative',)] and tech == 'Downtrend':
+        decision = 'Sell now!'
     return decision
 
 
@@ -99,9 +100,13 @@ ta = techInput()
 
 
 print('Sentiment : ', str(sa))
-print('\nTechnical : ', str(ta))
-decision = decisiontree(sa, ta)
+print('\nPrice Trend : ', str(ta))
+print('\nS&R : ', str(snr))
+technical_analysis = techresult(ta, snr)
+print('\nFinal Technical Analysis: \n', technical_analysis)
+decision = decisiontree(sa, technical_analysis)
 print('\nFinal Decision: \n', decision)
 saverecomend(decision)
+savetechnical(technical_analysis)
 connection.close()
 cursor.close()

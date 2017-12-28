@@ -52,14 +52,6 @@ def averageResistance(price, price2):
     average = (price + price2) / 2
     return average
 
-# def updateResistance(price, average, price2):
-#     price_id = None
-#     cursor.execute(
-#         "insert into finance values (%s,%s,%s,%s,%s,%s) returning price_id", (EUR_rate, ))
-#     price_id = cursor.fetchone()[0]
-#     connection.commit()
-#     return price_id
-
 
 def low1():
     prices = 0
@@ -94,32 +86,35 @@ def savesnr(high, lowhigh, resistance, low, lowlow, support, analysis):
     return snr_id
 
 
-def snranalysis(high, lowerhigh, low, higherlow, trend):
-    prices = 0
-    decision = 'hold'
+def snranalysis(h, lh, l, hl, trend, prices):
+    high = h
+    lowerhigh = lh
+    low = l
+    higherlow = hl
+    if prices >= low and prices <= high:
+        if prices <= high and prices >= lowerhigh:
+            if trend == 'Downtrend':
+                return 'Downtrend'
+        if prices <= higherlow and prices >= low:
+            if trend == 'Uptrend':
+                return 'Uptrend'
+        else:
+            return 'volatile'
+
+
+def currentprice():
     cursor.execute(
-        "select * from finance order by date desc limit 1")
-    prices = cursor.fetchone()[0]
-
-    if (prices >= low and prices <= high):
-        if (prices <= high and prices >= lowerhigh):
-            if (trend == [('Downtrend',)]):
-                decision = 'Downtrend'
-    elif (prices >= low and prices <= high):
-        if (prices <= higherlow and prices >= low):
-            if (trend == [('Uptrend',)]):
-                decision = 'Uptrend'
-    else:
-        decision = 'volatile'
-
-    return decision
+        "select * from finance where price_id=(select MAX(price_id) from finance);")
+    price = cursor.fetchone()[0]
+    connection.commit()
+    return price
 
 
 def trend():
-    trend = 'trend'
     cursor.execute(
         "select * from technical order by output_id desc limit 1")
-    prices = cursor.fetchone()[0]
+    trend = cursor.fetchone()[0]
+    connection.commit()
     return trend
 
 
@@ -139,7 +134,9 @@ price3 = low1()
 price4 = low2()
 average2 = round(averageSupport(price3, price4), 4)
 trend = trend()
-final_decision = snranalysis(price, price2, price3, price4, trend)
+currentprice = currentprice()
+final_decision = snranalysis(
+    price, price2, price3, price4, trend, currentprice)
 
 print("Low Price: ", price3)
 print("2nd low Price: ", price4)
@@ -148,3 +145,5 @@ snr_id = savesnr(price, price2, average, price3,
                  price4, average2, final_decision)
 print("Support & Resistance ID: ", snr_id)
 print("Support & Resistance: ", final_decision)
+print("trend: ", trend, type(trend))
+print("currentprice: ", currentprice)

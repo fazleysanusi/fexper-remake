@@ -8,7 +8,9 @@ from nltk.corpus import names
 # url = 'http://fox13now.com/2013/12/30/new-year-new-laws-obamacare-pot-guns-and-drones/'
 # url = 'https://www.dailyfx.com/forex/fundamental/forecast/weekly/eur/2017/10/29/After-ECB-Policy-Meeting-Euro-Adrift-Looking-for-a-Life-Boat.html'
 # url = 'https://www.dailyfx.com/forex/market_alert/2017/11/23/EURUSD-Jumps-as-Euro-Zone-Economic-Activity-Booms.html'
-url = 'https://www.dailyfx.com/forex/fundamental/daily_briefing/session_briefing/euro_open/2017/11/23/Euro-May-Shrug-Off-PMI-Survey-Roundup-German-GDP-Revision.html'
+# url = 'https://www.dailyfx.com/forex/fundamental/daily_briefing/session_briefing/euro_open/2017/11/23/Euro-May-Shrug-Off-PMI-Survey-Roundup-German-GDP-Revision.html'
+# url = 'https://www.fxstreet.com/currencies/eurusd/'
+url = 'https://www.fxstreet.com/news/eur-usd-11900-back-on-sight-amid-fresh-usd-selling-201712270705'
 
 article = Article(url)
 article.download()
@@ -51,11 +53,11 @@ def word_feats(words):
 
 def analyse(buy, sell):
     if buy > sell:
-        result = 'buy'
+        result = 'positive'
     if buy < sell:
-        result = 'sell'
+        result = 'negative'
     if buy == sell:
-        result = 'volatile'
+        result = 'neutral'
     return result
 
 
@@ -73,11 +75,12 @@ print('news_id:', news_no)
 corpus = callnews(news_no)
 
 
-positive_vocab = ['awesome', 'outstanding', 'fantastic',
+positive_vocab = ['awesome', 'outstanding', 'fantastic', 'increase', 'hike', 'bullish', 'contraction',
                   'terrific', 'good', 'nice', 'great', ':)']
-negative_vocab = ['bad', 'terrible', 'useless', 'hate', ':(']
+negative_vocab = ['bad', 'terrible', 'useless',
+                  'hate', ':(', 'decrease', 'bearish', 'expansion']
 neutral_vocab = ['movie', 'the', 'sound', 'was',
-                 'is', 'actors', 'did', 'know', 'words', 'not']
+                 'is', 'actors', 'did', 'know', 'words', 'not', 'neutral']
 
 positive_features = [(word_feats(pos), 'pos') for pos in positive_vocab]
 negative_features = [(word_feats(neg), 'neg') for neg in negative_vocab]
@@ -106,6 +109,7 @@ positive = float(pos) / len(words)
 negative = float(neg) / len(words)
 
 result = analyse(positive, negative)
+print('result:', result)
 print('analysis_id:', saveanalysis(result))
 
 
