@@ -7,3 +7,14 @@
 7) RSS to list news 
 8) split by sentences
 9) recognize USD/EUR being Discuss in the article 
+
+
+Last Task FYP
+
+1) fix gauge label
+2) add suitable word for classier
+3) find 10 positive & negative article on EURUSD
+4) last 30 days price data
+5)process the datas. present in table. compare with real event.
+6) update slide
+7) dont even dare to touch any codes. 🤨😠

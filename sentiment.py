@@ -9,8 +9,9 @@ from nltk.corpus import names
 # url = 'https://www.dailyfx.com/forex/fundamental/forecast/weekly/eur/2017/10/29/After-ECB-Policy-Meeting-Euro-Adrift-Looking-for-a-Life-Boat.html'
 # url = 'https://www.dailyfx.com/forex/market_alert/2017/11/23/EURUSD-Jumps-as-Euro-Zone-Economic-Activity-Booms.html'
 # url = 'https://www.dailyfx.com/forex/fundamental/daily_briefing/session_briefing/euro_open/2017/11/23/Euro-May-Shrug-Off-PMI-Survey-Roundup-German-GDP-Revision.html'
-# url = 'https://www.fxstreet.com/currencies/eurusd/'
-url = 'https://www.fxstreet.com/news/eur-usd-11900-back-on-sight-amid-fresh-usd-selling-201712270705'
+url = 'https://www.fxstreet.com/currencies/eurusd/'
+# '
+# url = 'https://www.fxstreet.com/news/eur-usd-11900-back-on-sight-amid-fresh-usd-selling-201712270705'
 
 article = Article(url)
 article.download()
@@ -61,10 +62,20 @@ def analyse(buy, sell):
     return result
 
 
-def saveanalysis(result):
+def percentage(neg, pos):
+    if neg > pos:
+        total = 100 - ((neg / (neg + pos)) * 100)
+    if neg < pos:
+        total = (pos / (neg + pos)) * 100
+    if neg == pos:
+        total = 50
+    return total
+
+
+def saveanalysis(result, percentage):
     analysis_id = None
     cursor.execute(
-        "insert into sentiment values (%s) returning analysis_id", (result,))
+        "insert into sentiment values (%s, %s) returning analysis_id", (result, percentage,))
     analysis_id = cursor.fetchone()[0]
     connection.commit()
     return analysis_id
@@ -76,7 +87,7 @@ corpus = callnews(news_no)
 
 
 positive_vocab = ['awesome', 'outstanding', 'fantastic', 'increase', 'hike', 'bullish', 'contraction',
-                  'terrific', 'good', 'nice', 'great', ':)']
+                  'terrific', 'good', 'nice', 'great', ':)', 'strong']
 negative_vocab = ['bad', 'terrible', 'useless',
                   'hate', ':(', 'decrease', 'bearish', 'expansion']
 neutral_vocab = ['movie', 'the', 'sound', 'was',
@@ -91,8 +102,8 @@ train_set = negative_features + positive_features + neutral_features
 classifier = NaiveBayesClassifier.train(train_set)
 
 # Predict
-neg = 0
-pos = 0
+neg = 0.0
+pos = 0.0
 sentence = str(corpus)
 sentence = sentence.lower()
 words = sentence.split(' ')
@@ -109,8 +120,11 @@ positive = float(pos) / len(words)
 negative = float(neg) / len(words)
 
 result = analyse(positive, negative)
+percent = round(percentage(negative, positive), 2)
+print('positive:', positive, '\t negative:', negative)
+print('percentage:', percent, '%')
 print('result:', result)
-print('analysis_id:', saveanalysis(result))
+print('analysis_id:', saveanalysis(result, percent))
 
 
 connection.close()

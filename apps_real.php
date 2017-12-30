@@ -176,7 +176,7 @@
    <div class="row" style="height:40%;">
       <div class="col-md-6">
          <div id="g1" ></div>
-          <!-- <script type="text/javascript" src="jquery.js"></script> -->
+         
           <script type="text/javascript">
             $(document).ready(function() {
               // setInterval(function () {
@@ -185,6 +185,19 @@
               $.ajax({
                 url: "data.php", 
                 success: function(result){
+                  console.log(result)
+                  if (result<=100 & result>=60){
+                    output = 'Uptrend';
+                  }
+                  else if (result<=40 & result>=0){
+                    output = 'Downtrend';
+                  }
+                  else {
+                    output = 'Volatile';
+                  }
+
+
+                  $("#test").append(output)
                 $("#show").append(result);
               var g = new JustGage({
               id: "g1",
@@ -194,7 +207,26 @@
               max: 100,
               relativeGaugeSize: true,
               title: "Technical Analysis",
-              label:"Percent(%)"
+              label:"Percent(%)",
+              pointerOptions: {
+              toplength: 10,
+              bottomlength: 10,
+              bottomwidth: 8,
+              color: '#000'
+            },
+            customSectors: [{
+              color: "#00ff00",
+              lo: 60,
+              hi: 100
+            }, {
+              color: "#ff0000",
+              lo: 0,
+              hi: 40
+            }, {
+              color: "#ffff66",
+              lo: 41,
+              hi: 59
+            }],
             });
             }});
             });
@@ -205,23 +237,53 @@
       
       <div class="col-md-6">
          <div id="g2" ></div>
-         <script>
-            var g = new JustGage({
+         <script type="text/javascript">
+            $(document).ready(function() {
+              $.ajax({
+                url: "sent.php", 
+                success: function(sentiment){
+                  if (sentiment<=100 & sentiment>=60){
+                    output = 'Positive';
+                  }
+                  else if (sentiment<=40 & sentiment>=0){
+                    output = 'Negative';
+                  }
+                  else {
+                    output = 'Neutral';
+                  }
+                  $("#sent").append(output)
+                $("#show").append(sentiment);
+              var g = new JustGage({
               id: "g2",
-              value: 45,
+              value: sentiment,
               decimals: 2,
               min: 0,
               max: 100,
               relativeGaugeSize: true,
               title: "Fundamental Analysis",
-              label:"Percent(%)"
+              label:"Percent(%)",
+              customSectors: [{
+                color: "#00ff00",
+                lo: 60,
+                hi: 100
+              }, {
+                color: "#ff0000",
+                lo: 0,
+                hi: 40
+              }, {
+                color: "#ffff66",
+                lo: 41,
+                hi: 59
+              }],
             });
-         </script>   
+            }});
+            });
+          </script>
       </div>
       <!-- </div> -->
       <div class="row" style="font-family: VAGRundschriftD, Helvetica, Arial, sans-serif;">
-      <div class="col-sm-6">Uptrend</div>
-      <div class="col-sm-6">Positive  </div>
+      <div class="col-sm-6" id="test"></div>
+      <div class="col-sm-6" id="sent"></div>
       </div>
       <div class="col-md-12"><div class="divider"></div></div>
       </div>
